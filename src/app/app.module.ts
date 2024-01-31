@@ -9,6 +9,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ClientComponent } from './components/client/client.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { ContactComponent } from './components/contact/contact.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
