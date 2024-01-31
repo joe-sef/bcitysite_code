@@ -1,0 +1,54 @@
+<div class="clients-container">
+    <div class="clients-info">
+        <h3>Clients</h3>
+    </div>
+    <div class="form-container">
+        <form [formGroup]="clientForm" (ngSubmit)="createNewClient()" novalidate>
+            <h3>Create Client</h3>
+            <div class="form-item">
+                <label for="">Name</label>
+                <input type="text" formControlName=Name class="form-control">
+                <small *ngIf="clientForm.controls['Name'].invalid && (clientForm.controls['Name'].dirty || clientForm.controls['Name'].touched)">
+                    Name is required
+                </small>
+            </div>
+            <div class="form-item">
+                <label for="">Client Code</label>
+                <input type="text" formControlName=ClientCode class="form-control">
+            </div>
+            <div class="form-item">
+                <button [disabled]="clientForm.pristine || clientForm.invalid" class="btn btn-primary" type="submit">Add new client</button>
+            </div>
+        </form>
+    </div>
+    <div class="table-container">
+        <ng-container *ngIf="clients.length==0 else clientsTable">
+            <div class="p-1">
+                No client(s) found
+            </div>
+        </ng-container>
+        <ng-template #clientsTable>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Client Code</th>
+                    <th scope="col">No. of linked contacts</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let client of clients; index as i">
+                    <tr [routerLink]="['/client', client.ClientCode]">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{client.Name}}</td>
+                        <td>{{client.ClientCode}}</td>
+                        <td>{{client.linkedContacts.length}}</td>
+                        
+                      </tr>       
+                  </ng-container>       
+                </tbody>
+              </table>
+        </ng-template>
+    </div>
+</div>

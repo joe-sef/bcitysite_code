@@ -1,0 +1,30 @@
+<header class="i-header">
+    <div class="header-container">
+        <nav class="i-nav">
+            <div class="brand bann">                   
+                <div class="m-logo clickable"  [routerLink]="['/']">                        
+                    <img src="https://www.bcity.me/web/image/website/1/logo/Welcome%20to%20Binary%20City?unique=d7e8604" height="28">
+                </div>
+            </div>
+            <ul class="i-nav-items">
+                <li class="i-nav-item " [routerLinkActive]="['active']" [routerLink]="['/']">
+                    <a class="i-nav-link" >
+                       Home
+                    </a>
+                </li>
+             
+                <!-- <li class="i-nav-item" *ngIf="auth.loginStatus">
+                    <a class="i-nav-link relative" (click)="auth.logout()">
+                       Logout
+                    </a>
+                </li>
+                <li class="i-nav-item" *ngIf="!auth.loginStatus">
+                    <a class="i-nav-link relative"  [routerLink]="['/login']">
+                        Login
+                    </a>
+                </li> -->
+            </ul>
+            
+        </nav>
+    </div>
+</header>

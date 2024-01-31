@@ -1,0 +1,46 @@
+<div class="contact-container container">
+    <div class="client-info">
+        <h3>{{contactData | json}}</h3>
+    </div>
+    <div class="table-container">
+        <ng-container *ngIf="clients.length==0 else clientsTable">
+           <div class="p-1">
+                No client(s) found
+           </div>
+        </ng-container>
+        <ng-template #clientsTable>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Client Code</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let client of clients; index as i">
+                    <tr >
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{client.Name}}</td>
+                        <td>{{client.ClientCode}}</td>
+                        <td *ngIf="client.ClientCode as client">
+                            <ng-container *ngIf="clientIsLinked(client) else notLinked">
+                                <button class="btn btn-danger btn-block" (click)="unlinkClient(client)">
+                                    unlink
+                                </button>
+                            </ng-container>
+                            <ng-template #notLinked>
+                                <button class="btn btn-primary btn-block" (click)="linkClient(client)">
+                                    link
+                                </button>
+                            </ng-template>
+                        </td>
+                        
+                      </tr>       
+                  </ng-container>       
+                </tbody>
+              </table>
+        </ng-template>
+    </div>
+</div>

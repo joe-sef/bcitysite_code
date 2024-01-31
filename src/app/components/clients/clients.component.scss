@@ -1,0 +1,34 @@
+.clients-container {
+
+    padding: 20px 6%;
+    background: #fff;
+    width: 100%;
+
+    .clients-info {
+        flex: 30%;
+        margin-right: 15px;
+        padding: 20px;
+        border-radius: 8px;
+        height: fit-content;
+
+        h3 {
+            color: #444;
+            margin: 0 0 12px 0;
+        }
+    }
+
+
+    .form-container {
+
+        form {
+
+            border: 1px solid #eee;
+            padding: 12px 25px;
+            border-radius: 8px;
+
+            .form-control {
+                background-color: #f1f1f1;
+            }
+        }
+    }
+}

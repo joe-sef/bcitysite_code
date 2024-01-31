@@ -1,0 +1,65 @@
+<div class="contacts-container">
+    <div class="contacts-info">
+        <h3>Contacts</h3>
+    </div>
+    <div class="form-container">
+        <form [formGroup]="contactForm" (ngSubmit)="createNewContact()">
+            <h3>Create Contact</h3>
+            <div class="form-item">
+                <label for="">Name</label>
+                <input type="text" formControlName=Name class="form-control">
+                <small *ngIf="contactForm.controls['Name'].invalid && (contactForm.controls['Name'].dirty || contactForm.controls['Name'].touched)">
+                    Name is required
+                </small>
+            </div>
+            <div class="form-item">
+                <label for="">Surname</label>
+                <input type="text" formControlName=Surname class="form-control">
+                <small *ngIf="contactForm.controls['Surname'].invalid && (contactForm.controls['Surname'].dirty || contactForm.controls['Surname'].touched)">
+                    Surname is required
+                </small>
+            </div>
+            <div class="form-item">
+                <label for="">Email</label>
+                <input type="email" formControlName=EmailAddress class="form-control">
+                <small *ngIf="contactForm.controls['EmailAddress'].invalid && (contactForm.controls['EmailAddress'].dirty || contactForm.controls['EmailAddress'].touched)">
+                    Valid email is required
+                </small>
+            </div>
+            <div class="form-item">
+                <button [disabled]="contactForm.pristine || contactForm.invalid" class="btn btn-primary" type="submit">Add new contact</button>
+            </div>
+        </form>
+    </div>
+    <div class="sub-container">
+        <ng-container *ngIf="!contacts.length else contactsTable">
+            <div class="p-1">
+                No contact(s) found
+            </div>
+        </ng-container>
+        <ng-template #contactsTable>
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Number of linked clients</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let contact of contacts; index as i">
+                    <tr [routerLink]="['/contact', contact.EmailAddress]">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{contact.Name}}</td>
+                        <td>{{contact.Surname}}</td>
+                        <td>{{contact.EmailAddress}}</td>
+                        <td>{{contact.linkedClients?.length}}</td>
+                      </tr>       
+                  </ng-container>       
+                </tbody>
+              </table>
+        </ng-template>
+    </div>
+</div>
